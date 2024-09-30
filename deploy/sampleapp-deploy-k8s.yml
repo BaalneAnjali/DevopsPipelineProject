@@ -1,35 +1,36 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: addressbook
+  name: my-app
   labels:
-    app: sampleapp
+    app: my-app
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
-      app: sampleapp
+      app: my-app
   template:
     metadata:
       labels:
-        app: sampleapp
+        app: my-app
     spec:
       containers:
-      - name: samplejavaapp
-        image: lerndevops/samplejavaapp:bno
+      - name: my-app-container
+        image: 211125647101.dkr.ecr.ap-south-1.amazonaws.com/baalneanjali/img-repo:latest  # ECR image
         ports:
-        - name: http
-          containerPort: 8080
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: ecr-secret  # Reference the ECR pull secret
 
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: addressbook-svc
+  name: my-service
 spec:
   type: NodePort
   selector:
-    app: sampleapp
+    app: my-app
   ports:
   - port: 80
     targetPort: 8080
