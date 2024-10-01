@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: my-app-container
-        image: 211125647101.dkr.ecr.ap-south-1.amazonaws.com/baalneanjali/img-repo:latest  # ECR image
+        image: 2654654504951.dkr.ecr.ap-south-1.amazonaws.com/sample/myimage:latest  # ECR image
         ports:
         - containerPort: 8080
       imagePullSecrets:
